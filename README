@@ -1,0 +1,12 @@
+                             <<< Inadyn Service Manager >>>                           
+                  
+           Open Source InadynServiceManager plugin for E2 based Linux set-top box
+           You can take control of inadyn-mt service, start, stop, set for starting
+           at boot, edit configuration file.
+
+                                      Depends enigma2
+
+           This file is open source software; you can redistribute it and/or modify  
+              it under the terms of the GNU General Public License version 2 as      
+                      published by the Free Software Foundation.                   
+
