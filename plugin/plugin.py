@@ -209,7 +209,7 @@ class InadynServiceMonitor(Screen, ConfigListScreen):
 		self.running = False
 		if PROGRAMFILE in data and not "none killed" in data:
 			self.running = True
-		self["status"].setText("started") if self.running else self["status"].setText("stopped")
+		self["status"].setText("started" if self.running else "stopped")
 
 	def updateServiceStatus(self):
 		cmd = "ps -w | grep /usr/bin/inadyn-mt | grep -v grep"
