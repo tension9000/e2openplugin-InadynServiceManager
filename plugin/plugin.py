@@ -331,6 +331,7 @@ class InadynServiceManager(ConfigListScreen, Screen):
 			self["status"].setText("Please install <inadyn-mt> package first!")
 
 		self.configChanged = False
+		self.infoVisible = False
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -448,7 +449,12 @@ class InadynServiceManager(ConfigListScreen, Screen):
 		self.session.openWithCallback(self.addAliasCallback, VirtualKeyBoard, title="Add new alias", text="")
 
 	def showInfo(self):
-		self["status"].setText("Button 0 resets config to convenient values\nFor removing alias accept empty keyboard string")
+		if not self.infoVisible:
+			self["status"].setText("Button 0 resets config to convenient values\nFor removing alias accept empty keyboard string")
+			self.infoVisible = True
+		else:
+			self["status"].setText("")
+			self.infoVisible = False
 
 	def keyOk(self):
 		sel = self["config"].getCurrent()
