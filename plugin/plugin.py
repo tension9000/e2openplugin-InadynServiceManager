@@ -73,10 +73,10 @@ class ServiceConsole():
 			(callback) = callback
 			if result:
 				callback(result.strip())
-				print "[ServiceConsole] result: ", result.strip()
+				print ("[ServiceConsole] result: ", result.strip())
 			else:
 				callback(str(retval))
-				print "[ServiceConsole] retval: ", retval
+				print ("[ServiceConsole] retval: ", retval)
 
 HD = False
 try:
@@ -381,7 +381,7 @@ class InadynServiceManager(ConfigListScreen, Screen):
 		self["config"].list = list
 		self["config"].l.setList(list)
 		self["status"].setText("")
-#		print "[InadynServiceManager]updateMenuList ", list
+#		print ("[InadynServiceManager]updateMenuList ", list)
 
 	def loadConfig(self):
 		self.initConfig()
@@ -459,9 +459,9 @@ class InadynServiceManager(ConfigListScreen, Screen):
 	def keyOk(self):
 		sel = self["config"].getCurrent()
 		if sel in (self.menuEntryUpdatePeriodSec, self.menuEntryLogLevel, self.menuEntryStatusInterval, self.menuEntryOfflineInterval):
-			print "[InadynServiceManager]keyOk config number"
+			print ("[InadynServiceManager]keyOk config number")
 		elif sel != self.menuEntryBackground:
-			print "[InadynServiceManager]keyOk virtual keyboard"
+			print ("[InadynServiceManager]keyOk virtual keyboard")
 			self.KeyText()
 
 	def saveConfig(self):
@@ -490,7 +490,7 @@ class InadynServiceManager(ConfigListScreen, Screen):
 		cfgString = addLine(cfgString, "status_offline_interval", str(self.menuEntryOfflineInterval[1].value))
 
 		saveConfigFile(self.inputFile, cfgString)
-		print "[InadynServiceManager]saveConfig", cfgString
+		print ("[InadynServiceManager]saveConfig", cfgString)
 		self.loadConfig()
 		self.configChanged = False
 
@@ -521,7 +521,7 @@ class InadynServiceManager(ConfigListScreen, Screen):
 						continue
 					self.inadynConfig[k] = v
 				except : pass
-#			print "[InadynServiceManager]readConfig aliases ", self.aliases
+#			print ("[InadynServiceManager]readConfig aliases ", self.aliases)
 
 		def setValue(key, default):
 			try:
@@ -546,7 +546,7 @@ class InadynServiceManager(ConfigListScreen, Screen):
 		setValue("online_check_url", "checkurl")
 		setValue("status_interval", "600")			#sec	30..864000
 		setValue("status_offline_interval", "15")		#sec	5..864000
-#		print "[InadynServiceManager]readConfig ", self.inadynConfig
+#		print ("[InadynServiceManager]readConfig ", self.inadynConfig)
 
 	def openMenu(self):
 		self.session.open(InadynServiceMonitor)
