@@ -501,27 +501,28 @@ class InadynServiceManager(ConfigListScreen, Screen):
 		else:
 			self.inputFile = CONFIGFILE
 		if path.exists(self.inputFile):
-			for line in file(self.inputFile).readlines():
-				line = line.strip()
-				line = line.strip("--")
-				if line == "" or line[0] == '#':
-					continue
-				try:
-					i = line.find(' ')
-					if i == -1 and line in ("background", "syslog", "wildcard"):	# options without value
-						k,v = line,"Yes"
-					else:
-						k,v = line[:i],line[i+1:]
-						k,v = k.strip(),v.strip()
-					if k not in CONFIGOPTIONS:
+			with open(self.inputFile) as fp:
+				for line in fp.readlines():
+					line = line.strip()
+					line = line.strip("--")
+					if line == "" or line[0] == '#':
 						continue
-					if k == "alias":						# multi alias
-						self.aliases.append(v)
-						self.inadynConfig[k] = self.aliases
-						continue
-					self.inadynConfig[k] = v
-				except : pass
-#			print ("[InadynServiceManager]readConfig aliases ", self.aliases)
+					try:
+						i = line.find(' ')
+						if i == -1 and line in ("background", "syslog", "wildcard"):	# options without value
+							k,v = line,"Yes"
+						else:
+							k,v = line[:i],line[i+1:]
+							k,v = k.strip(),v.strip()
+						if k not in CONFIGOPTIONS:
+							continue
+						if k == "alias":			# multi alias
+							self.aliases.append(v)
+							self.inadynConfig[k] = self.aliases
+							continue
+						self.inadynConfig[k] = v
+					except : pass
+#				print ("[InadynServiceManager]readConfig aliases ", self.aliases)
 
 		def setValue(key, default):
 			try:
