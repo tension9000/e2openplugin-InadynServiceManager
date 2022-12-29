@@ -249,6 +249,10 @@ class InadynServiceMonitor(Screen, ConfigListScreen):
 			plugins.clearPluginList()
 			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 			CFG.startatboot.value is not self.start_at_boot and self.updateBootSetting()
+		else:
+			CFG.showinmenu.cancel()
+			CFG.showinextensions.cancel()
+			CFG.startatboot.cancel()
 
 	def keyCancel(self):
 		if self["config"].isChanged():
